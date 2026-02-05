@@ -1,8 +1,8 @@
-const { useEffect, useMemo, useState } = React;
+import { useEffect, useMemo, useState } from "react";
 
-const { loadUploads, mockUploadToS3, saveUploads } = window.VideoUploadModel;
+import { loadUploads, mockUploadToS3, saveUploads } from "../models/uploadModel";
 
-function useVideoUploadController() {
+export function useVideoUploadController() {
   const [title, setTitle] = useState("");
   const [file, setFile] = useState(null);
   const [uploads, setUploads] = useState([]);
@@ -55,7 +55,3 @@ function useVideoUploadController() {
     uploads,
   };
 }
-
-window.VideoUploadController = {
-  useVideoUploadController,
-};
