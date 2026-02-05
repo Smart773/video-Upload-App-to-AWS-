@@ -1,6 +1,6 @@
 const STORAGE_KEY = "videoUploads";
 
-const mockUploadToS3 = (file, title) =>
+export const mockUploadToS3 = (file, title) =>
   new Promise((resolve) => {
     setTimeout(() => {
       resolve({
@@ -14,7 +14,7 @@ const mockUploadToS3 = (file, title) =>
     }, 900);
   });
 
-function formatBytes(bytes) {
+export function formatBytes(bytes) {
   if (!bytes && bytes !== 0) return "-";
   const sizes = ["B", "KB", "MB", "GB"];
   const index = Math.min(Math.floor(Math.log(bytes) / Math.log(1024)), sizes.length - 1);
@@ -22,18 +22,11 @@ function formatBytes(bytes) {
   return `${value.toFixed(1)} ${sizes[index]}`;
 }
 
-function loadUploads() {
+export function loadUploads() {
   const saved = localStorage.getItem(STORAGE_KEY);
   return saved ? JSON.parse(saved) : [];
 }
 
-function saveUploads(uploads) {
+export function saveUploads(uploads) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(uploads));
 }
-
-window.VideoUploadModel = {
-  formatBytes,
-  loadUploads,
-  mockUploadToS3,
-  saveUploads,
-};
